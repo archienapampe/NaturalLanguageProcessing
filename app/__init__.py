@@ -12,4 +12,4 @@ app = Flask(__name__)
 app.logger = logging.getLogger('NLP')
 app.logger.removeHandler(default_handler)
 
-import views    
+from app import views  
