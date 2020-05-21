@@ -15,6 +15,6 @@ class BaseController:
         raise NotImplementedError('_call')
     
 
-class TestToRun(BaseController):
+class StartProcess(BaseController):
     def _call(self):
-        return render_template('index.html', title='hello')
+        return render_template('index.html')

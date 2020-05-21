@@ -3,5 +3,5 @@ from app import controllers
 
 
 @app.route('/')
-def test():
-    return controllers.TestToRun().call()
+def start_process():
+	return controllers.StartProcess().call()
