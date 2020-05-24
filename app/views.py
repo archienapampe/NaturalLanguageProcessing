@@ -1,7 +1,16 @@
+from flask import request
+
 from app import app
 from app import controllers
 
 
 @app.route('/')
+def raw_data_input():
+	return controllers.RawDataInput().call()
+
+
+@app.route('/result', methods=["POST"])
 def start_process():
-	return controllers.StartProcess().call()
+    if request.method == 'POST':
+        rawdata = request.form['rawdata']
+        return controllers.StartProcess().call(rawdata)

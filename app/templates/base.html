@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  {% if title %}
+  <title>{{ title }}</title>
+  {% else %}
+  <title>NLP APP</title>
+  {% endif %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+  <div class="wrapper">
+    {% block wrapper %}
+    {% endblock wrapper %}
+  </div>
+</body>
+
+</html>

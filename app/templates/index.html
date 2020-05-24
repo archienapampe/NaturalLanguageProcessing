@@ -1,28 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-  <meta charset="UTF-8">
-  <title>Start NLP</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
 
-<body>
-  <div class="wrapper">
-    <div>
-      <h1 class="title">Football</h1>
-      <form class="form">
-        <label>
-          Input data
-          <textarea class="form__textarea"></textarea>
-        </label>
-        <button class="button">Submit</button>
-      </form>
-    </div>
-    <footer class="footer">
-      &copy; 2020 <a href="https://jetsoftpro.com/" target="_blank">jetsoftpro.com</a>
-    </footer>
-  </div>
-</body>
-
-</html>
+{% block wrapper %}
+<div>
+  <h1 class="title">Football</h1>
+  <form class="form" method="POST" action="{{ url_for('start_process') }}">
+    <label>
+      Input data
+      <textarea class="form__textarea" name='rawdata'></textarea>
+    </label>
+    <button class="button">Submit</button>
+  </form>
+</div>
+<footer class="footer">
+  &copy; 2020 <a href="https://jetsoftpro.com/" target="_blank">jetsoftpro.com</a>
+</footer>
+{% endblock wrapper %}
