@@ -2,8 +2,10 @@
 
 
 {% block wrapper %}
-    <h1>Football Result in tables</h1>
-    {{ data.ner_df|safe }}
-    <h1>Football General Entity Sentiment</h1>
-    {{ data.sentiment_df|safe }}
+    <div>
+        <h1>Football Result in tables</h1>
+        {{ data.ner_df|safe }}
+        <h1>Football General Entity Sentiment</h1>
+        {{ data.sentiment_df|safe }}
+    </div>  
 {% endblock wrapper %}
