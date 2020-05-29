@@ -4,8 +4,34 @@ html,body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+h1 {
+  margin-bottom: 0;
+}
+
 table {
   width: 100%;
+}
+
+.dataframe {
+  border-collapse: collapse;
+}
+
+.dataframe thead {
+  background: rgb(53, 57, 66);
+  color: white;
+}
+
+.dataframe th, .dataframe td {
+  border: none;
+  padding: 3px;
+}
+
+.dataframe td {
+  border-bottom: 1px solid grey;
+}
+
+.dataframe tr:nth-child(even) {
+  background: rgb(242, 242, 242);
 }
 
 .wrapper {

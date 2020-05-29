@@ -23,7 +23,7 @@ LOGGING = {
     'loggers': {
         'NLP': {
             'handlers': ['file',],
-            'level': logging.INFO
+            'level': logging.INFO,
         },
     },
 }

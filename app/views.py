@@ -1,7 +1,6 @@
 from flask import request
 
-from app import app
-from app import controllers
+from app import app, controllers
 
 
 @app.route('/')

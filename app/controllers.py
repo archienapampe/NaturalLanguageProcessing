@@ -3,12 +3,13 @@ import spacy
 from afinn import Afinn
 from textblob import TextBlob
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
-
 from flask import render_template, make_response
 
+from app import app
+
+nlp = spacy.load('en_core_web_lg')
 analyzer = SentimentIntensityAnalyzer()
 af = Afinn()
-nlp = spacy.load('en_core_web_lg')
 
                                                                                         
 class BaseController:
@@ -17,8 +18,10 @@ class BaseController:
     
     def call(self, *args, **kwargs):
         try:
+            app.logger.info(f'Started {self.__class__.__name__}')
             return self._call(*args, **kwargs)
         except Exception as e:
+            app.logger.exception(f'Error: {e=}')
             return make_response(str(e), 500)
         
     def _call(self, *args, **kwargs):
@@ -56,7 +59,7 @@ class StartProcess(BaseController):
     def _prepare_dataframe(self, df):
         df = df.transpose()
         df.fillna(value='', inplace=True)
-        df_html = df.to_html(index=False)  
+        df_html = df.to_html(index=False, justify='left')  
         
         return df_html
     
@@ -89,8 +92,11 @@ class StartProcess(BaseController):
         articles = [article for article in rawdata.replace('\r', '').split('\n\n') if article]
         
         sentiment_scores_afinn = [af.score(article) for article in articles]
+        app.logger.info(f'{sentiment_scores_afinn=}')
         sentiment_scores_blob = [TextBlob(article).correct().sentiment.polarity for article in articles]
+        app.logger.info(f'{sentiment_scores_blob=}')
         sentiment_scores_vader = [analyzer.polarity_scores(article)['compound'] for article in articles]
+        app.logger.info(f'{sentiment_scores_vader=}')
         
         df = pd.DataFrame.from_dict({
             'SENTIMENT SCORES AFINN': sentiment_scores_afinn, 
@@ -102,5 +108,3 @@ class StartProcess(BaseController):
         }, orient='index')
         
         return df
-
-    
