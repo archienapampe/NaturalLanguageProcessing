@@ -27,3 +27,7 @@ LOGGING = {
         },
     },
 }
+
+
+class Configuration():
+    DEBUG = True
