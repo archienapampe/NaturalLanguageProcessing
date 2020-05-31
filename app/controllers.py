@@ -39,7 +39,8 @@ class StartProcess(BaseController):
         sentiment_dataframe = self._prepare_dataframe(self._sentiment_dataframe(rawdata))
         
         return render_template('result.html',
-                                data={'ner_df': ner_dataframe, 'sentiment_df': sentiment_dataframe},
+                                tables=[ner_dataframe, sentiment_dataframe],
+                                titles=['none', 'Football Result in tables', 'Football General Entity Sentiment'],
                                 title='Result NLP'
                                 )
                                                     
