@@ -18,10 +18,10 @@ class BaseController:
     
     def call(self, *args, **kwargs):
         try:
-            app.logger.info(f'Started {self.__class__.__name__}')
+            app.logger.info('Started %s', self.__class__.__name__)
             return self._call(*args, **kwargs)
         except Exception as e:
-            app.logger.exception(f'Error: {e=}')
+            app.logger.exception('Exception occurred')
             return make_response(str(e), 500)
         
     def _call(self, *args, **kwargs):
@@ -93,11 +93,11 @@ class StartProcess(BaseController):
         articles = [article for article in rawdata.replace('\r', '').split('\n\n') if article]
         
         sentiment_scores_afinn = [af.score(article) for article in articles]
-        app.logger.info(f'{sentiment_scores_afinn=}')
+        app.logger.debug(f'{sentiment_scores_afinn=}')
         sentiment_scores_blob = [TextBlob(article).correct().sentiment.polarity for article in articles]
-        app.logger.info(f'{sentiment_scores_blob=}')
+        app.logger.debug(f'{sentiment_scores_blob=}')
         sentiment_scores_vader = [analyzer.polarity_scores(article)['compound'] for article in articles]
-        app.logger.info(f'{sentiment_scores_vader=}')
+        app.logger.debug(f'{sentiment_scores_vader=}')
         
         df = pd.DataFrame.from_dict({
             'SENTIMENT SCORES AFINN': sentiment_scores_afinn, 
