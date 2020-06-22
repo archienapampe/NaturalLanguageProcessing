@@ -8,7 +8,7 @@ def raw_data_input():
 	return controllers.RawDataInput().call()
 
 
-@app.route('/result', methods=["POST"])
+@app.route('/result', methods=['POST'])
 def start_process():
     if request.method == 'POST':
         rawdata = request.form['rawdata']

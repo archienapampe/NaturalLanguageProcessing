@@ -23,11 +23,11 @@ LOGGING = {
     'loggers': {
         'NLP': {
             'handlers': ['file',],
-            'level': logging.DEBUG,
+            'level': logging.INFO,
         },
     },
 }
 
 
 class Configuration():
-    DEBUG = True
+    DEBUG = False
