@@ -7,5 +7,6 @@
             <h2>{{ titles[loop.index] }}</h2>
             {{ table|safe }}
         {% endfor %}
+        <a href="{{ url_for('raw_data_input') }}">Back</a>
     </div>  
 {% endblock wrapper %}

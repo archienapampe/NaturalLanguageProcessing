@@ -4,3 +4,4 @@ spacy==2.2.4
 afinn==0.1
 textblob==0.15.3
 vaderSentiment==3.3.2
+pywebview==3.4
